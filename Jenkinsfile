@@ -3,14 +3,28 @@ pipeline {
     stages {
         stage('Update branch develop') {
             steps {
-                sh 'git fetch'
                 sh 'git checkout develop'
+                sh 'git pull'
             }
         }
-        stage('Create release branch') {
+        stage('Test') {
             steps {
-                sh 'git checkout -b release develop'
-                sh 'git push -u origin release'
+                echo "** EJECUCION DE TEST **"
+            }
+        }
+        stage('SonarQube') {
+            steps {
+                echo "** EJECUCION DE SonarQube **"
+            }
+        }
+        stage('Fortify') {
+            steps {
+                echo "** EJECUCION DE Fortify **"
+            }
+        }
+        stage('DEPLOY') {
+            steps {
+                echo "DEPLOY APP"
             }
         }
     }
